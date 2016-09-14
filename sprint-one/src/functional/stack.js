@@ -9,12 +9,14 @@ var Stack = function() {
 
   // Implement the methods below
   someInstance.push = function(value) {
+    storage[counter] = value;
     counter++;
   };
 
   someInstance.pop = function() {
     if (counter > 0) {
       counter--;
+      return storage[counter];
     }
   };
 
