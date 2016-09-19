@@ -35,7 +35,6 @@ HashTable.prototype.retrieve = function(k) {
       answer = block[1];
     }
   });
-  console.log(answer);
   return answer;
 };
 
