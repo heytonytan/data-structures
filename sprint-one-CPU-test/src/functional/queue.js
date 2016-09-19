@@ -1,4 +1,4 @@
-var Queue = function() {
+var QueueFunc = function() {
   var someInstance = {};
 
   // Use an object with numeric keys to store values
@@ -7,6 +7,7 @@ var Queue = function() {
   var back = 0;
 
   // Implement the methods below
+
   someInstance.enqueue = function(value) {
     storage[back] = value;
     back++;
@@ -27,3 +28,14 @@ var Queue = function() {
 
   return someInstance;
 };
+
+var makeManyQueueFunctionals = function() {
+  var array = [];
+  for (var i = 0; i < 100000; i++) {
+    var queue = QueueFunc();
+    array.push(queue);
+  }
+  return array;
+};
+
+var manyQueueFunc = makeManyQueueFunctionals();

@@ -1,4 +1,4 @@
-var Queue = function() {
+var QueueProto = function() {
   // Hey! Rewrite in the new style. Your code will wind up looking very similar,
   // but try not not reference your old code in writing the new style.
   var instance = Object.create(queueMethods);
@@ -28,3 +28,13 @@ queueMethods.size = function() {
   return this.back - this.front;
 };
 
+var makeManyQueuePrototypal = function() {
+  var array = [];
+  for (var i = 0; i < 100000; i++) {
+    var queueproto = QueueProto();
+    array.push(queueproto);
+  }
+  return array;
+};
+
+var ManyQueuePrototypal = makeManyQueuePrototypal();

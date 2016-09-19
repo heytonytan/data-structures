@@ -1,10 +1,13 @@
-var Queue = function() {
+var QueueFuncShared = function() {
   // Hey! Rewrite in the new style. Your code will wind up looking very similar,
   // but try not not reference your old code in writing the new style.
-  var instance = Object.create(queueMethods);
+  var instance = {};
   instance.storage = {};
   instance.front = 0;
   instance.back = 0;
+  instance.enqueue = queueMethods.enqueue;
+  instance.dequeue = queueMethods.dequeue;
+  instance.size = queueMethods.size;
   return instance;
 };
 
@@ -28,3 +31,13 @@ queueMethods.size = function() {
   return this.back - this.front;
 };
 
+var makeManyQueueFunctionalShared = function() {
+  var array = [];
+  for (var i = 0; i < 100000; i++) {
+    var queue = QueueFuncShared();
+    array.push(queue);
+  }
+  return array;
+};
+
+var manyQueueFuncShared = makeManyQueueFunctionalShared();

@@ -1,12 +1,25 @@
-var LinkedList = function() {
+var DoublyLinkedList = function() {
   var list = {};
   list.head = null;
   list.tail = null;
+
+  list.addToHead = function(value) {
+    var node = new Node(value);
+    if (this.head !== null) {
+      node.next = this.head;
+      this.head.previous = node;
+    }
+    this.head = node;
+    if (this.tail === null) {
+      this.tail = node;
+    }
+  };
 
   list.addToTail = function(value) {
     var node = new Node(value);
     if (this.tail !== null) {
       this.tail.next = node;
+      node.previous = this.tail;
     }
     this.tail = node;
     if (this.head === null) {
@@ -22,6 +35,20 @@ var LinkedList = function() {
         this.tail = null;
       } else {
         this.head = this.head.next;
+        this.head.previous = null;
+      }
+      return result.value;
+    }
+  };
+
+  list.removeTail = function() {
+    if (this.tail !== null) {
+      var result = this.tail;
+      if (this.tail.previous === null) {
+        this.head = null;
+        this.tail = null;
+      } else {
+        this.tail = this.tail.previous;
       }
       return result.value;
     }
@@ -46,6 +73,7 @@ var Node = function(value) {
   var node = {};
 
   node.value = value;
+  node.previous = null;
   node.next = null;
 
   return node;

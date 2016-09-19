@@ -1,4 +1,4 @@
-var Stack = function() {
+var StackProto = function() {
   // Hey! Rewrite in the new style. Your code will wind up looking very similar,
   // but try not not reference your old code in writing the new style.
   var instance = Object.create(stackMethods);
@@ -42,3 +42,14 @@ stackMethods.size = function() {
 // Stack.prototype.size = function() {
 //   return this.count;
 // };
+
+var makeManyStacksPrototypal = function() {
+  var array = [];
+  for (var i = 0; i < 100000; i++) {
+    var stack = StackProto();
+    array.push(stack);
+  }
+  return array;
+};
+
+var manyStacksPrototypal= makeManyStacksPrototypal();
